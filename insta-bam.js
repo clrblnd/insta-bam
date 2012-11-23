@@ -2,7 +2,7 @@
  * insta-bam
  *
  * Created at: 2012-11-20 21:22:09 +0100
- * Updated at: 2012-11-23 16:27:39 +0100
+ * Updated at: 2012-11-23 17:31:06 +0100
  *
  * Author: @clrblnd (+ @ivow for the way of the code)
  * Version: 0.0.0
@@ -14,7 +14,7 @@
 (function($, window) {
   "use strict";
 
-  var tmpl_feed = '<a href="{{instagram_url}}"><img src="{{instagram}}" alt="{{caption}} - {{created-at}}" data-likes="{{likes}}" data-created-at-iso="{{created-at-iso}}" data-created-at-formatted="{{created-at-formatted}}" /></a>';
+  var tmpl_feed = '<a href="{{instagram_url}}"><img src="{{instagram}}" alt="{{caption}}" data-likes="{{likes}}" /><time datetime="{{created_at_iso}}" title="{{created_at_formatted}}">{{created_at_formatted}}</time></a>';
 
   var plugin_name = 'insta-bam',
       defaults    = {
@@ -79,29 +79,28 @@
 
       console.log('idx ' + idx + " value " + value.filter);
 
-      var $li         = $('<li />'),
-          template    = _this.options.tmpl_feed,
-          created_at  = _this.createdAt( value.created_time ),
+      var $li                   = $('<li />'),
+          template              = _this.options.tmpl_feed,
+          created_at            = _this.createdAt( value.created_time ),
           created_at_formatted  = created_at.getFullYear() + '-' + (created_at.getMonth() + 1) + '-' + created_at.getDate(),
           created_at_iso        = _this.createdAtISO( created_at );
 
       template = template
-        .replace(/\{\{instagram_url\}\}/g, value.link)
-        .replace(/\{\{instagram\}\}/g, value.images.standard_resolution.url)
-        .replace(/\{\{caption\}\}/g, value.caption.text)
-        .replace(/\{\{likes\}\}/g, value.likes.count)
-        .replace(/\{\{created-at\}\}/g, value.created_time)
-        .replace(/\{\{created-at-iso\}\}/g, created_at_iso)
-        .replace(/\{\{created-at-formatted\}\}/g, created_at_formatted);
+        .replace(/\{\{instagram_url\}\}/g         , value.link)
+        .replace(/\{\{instagram\}\}/g             , value.images.standard_resolution.url)
+        .replace(/\{\{caption\}\}/g               , value.caption.text)
+        .replace(/\{\{likes\}\}/g                 , value.likes.count)
+        .replace(/\{\{created_at_iso\}\}/g        , created_at_iso)
+        .replace(/\{\{created_at_formatted\}\}/g  , created_at_formatted);
 
-      $template = $(template);
-
-      $template.appendTo($li);
-      $li.appendTo( $ul );
+      $li
+        .append( $(template) )
+        .appendTo( $ul );
 
     });
 
-    console.log($ul);
+console.log($ul);
+
     // append content to element
     $ul.appendTo( $(this.element) );
 
