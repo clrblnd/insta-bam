@@ -1,3 +1,1 @@
-# insta-bam
-
-Instagram plugin 
+TODO: write documentation
