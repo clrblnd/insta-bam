@@ -2,7 +2,7 @@
  * insta-bam
  *
  * Created at: 2012-11-20 21:22:09 +0100
- * Updated at: 2012-11-24 08:23:16 +0100
+ * Updated at: 2012-11-24 08:00:18 +0100
  *
  * Author: @clrblnd (+ @ivow for the way of the code)
  * Version: 0.0.0
@@ -23,20 +23,13 @@
       },
       ISODateString;
 
-  function InstaFeed(element, url, options){
+  function InstaFeed(element, options){
     this.element  = element;
     this.options  = $.extend( {}, defaults, options );
-
-    // I've changed the way you use the API url
-    // Now you can easily use all the instagram endpoints with your plugin
-    //this.url      = "https://api.instagram.com/v1/tags/" + options.tag + "/media/recent?access_token=" + options.accesstoken;
-    this.url        = url;
+    this.url      = "https://api.instagram.com/v1/tags/" + options.tag + "/media/recent?access_token=" + options.accesstoken;
 
     // I've changed your ID, now you can have multiple feeds in your cache
     // Instead of using window.location, use the api url
-    //
-    // More info about window.sessionStorage:
-    // http://www.nczonline.net/blog/2009/07/21/introduction-to-sessionstorage/
     this.id       = this.url.hashCode();
     this.cache    = window.sessionStorage[plugin_name + this.id];
 
@@ -122,12 +115,11 @@
     return date.getUTCFullYear() + '-' + pad( date.getUTCMonth() + 1 ) + '-' + pad( date.getUTCDate() )+ 'T' + pad( date.getUTCHours() ) + ':' + pad( date.getUTCMinutes() ) + ':' + pad( date.getUTCSeconds() ) + 'Z';
   };
 
-  // jQuery function
-  $.fn.instafeed = function( url, options ){
+  // function
+  $.fn.instafeed = function( options ){
     // Found the mistake
     // In a jQuery you have to loop your "this", because it's an array of jQuery
     // objects. You return this array, so the jQuery chaining keeps working
-
 
     // Not like this
     //return new InstaFeed( this, options );
@@ -137,13 +129,14 @@
     // Also check the data attribute we set with the plugin name
     // Via this way, you can access your instance
     return this.each( function() {
-      $(this).data( plugin_name, new InstaFeed(this, url, options) );
+      $(this).data( plugin_name, new InstaFeed(this, options) );
 
       // Access your instance in other code like this
       var instabam_instance = $(this).data( 'instaBam' );
       console.log( instabam_instance );
 
     });
+
   };
 
   // Helpers

@@ -13,22 +13,66 @@
   <script src="insta-bam-min.js"></script>
   <script>
 
-    $('.instafeedplease').instafeed({
-      accesstoken: '133738.60499ed.b5b9f817ef3f4f9a8f08bc22390cde4d',
-      clientid: '60499edcc1a84061b4dd1c97041a3dc3',
-      whitelist: ['kurteken'],
-      tag: 'jaegher'
+    // Always run your jQuery functions in a DOM ready function,
+    // or run them at the bottom of your page
+    $(function(){
+
+      var access_token = "133738.60499ed.b5b9f817ef3f4f9a8f08bc22390cde4d",
+          client_id    = "60499edcc1a84061b4dd1c97041a3dc3";
+
+      $('.instafeed-jaegher').instafeed('https://api.instagram.com/v1/tags/jaegher/media/recent?access_token=' + access_token, {
+        clientid: client_id,
+        whitelist: ['kurteken']
+      });
+
+      $('.instafeed-popular').instafeed('https://api.instagram.com/v1/media/popular?client_id=' + client_id);
+
     });
 
   </script>
+
+  <style>
+    ul {
+      font-family: Monaco,"Lucida Console",monospace;
+      font-size: 12px;
+      list-style: none;
+      margin: 0;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    li {
+      background-color: $white;
+      -webkit-box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.75);
+      -moz-box-shadow:    0px 0px 5px rgba(50, 50, 50, 0.75);
+      box-shadow:         0px 0px 5px rgba(50, 50, 50, 0.75);
+      float: left;
+      margin: 10px;
+      padding: 2px;
+      text-align: center;
+    }
+
+    img {
+      display: block;
+      height: 100px;
+      width: 100px;
+    }
+
+    time {
+      display: block;
+      padding: 5px;
+    }
+  </style>
 </head>
 <body>
 
-<h2>Insta-Bam</h2>
-<div class="instafeedplease">
+<h1>Insta-Bam</h1>
 
-</div>
-<p>alle mannekes</p>
+<h2>Jaegher</h2>
+<div class="instafeed-jaegher"></div>
+
+<h2>Instagram populars</h2>
+<div class="instafeed-popular"></div>
 
 </body>
 </html>
