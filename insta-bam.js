@@ -2,7 +2,7 @@
  * insta-bam
  *
  * Created at: 2012-11-20 21:22:09 +0100
- * Updated at: 2012-11-26 17:14:02 +0100
+ * Updated at: 2012-11-26 17:54:33 +0100
  *
  * Author: @clrblnd (+ @ivow for the way of the code)
  * Version: 1.0.0
@@ -61,17 +61,38 @@
         feed_result = [],
         $ul         = $('<ul />');
 
+        console.log(data.data);
+
     // check for whitelist data
     if(_this.options.whitelist) {
-      $.each( data.data, function(idx, value){
-        if ( $.inArray(value.user.username,_this.options.whitelist) != -1 ) {
-          feed_result.push(value);
-        }
-      });
+
+      if(_this.url.indexOf('https://api.instagram.com/v1/tags/') != -1) {
+
+        $.each( data.data, function(idx, value){
+          if ( $.inArray(value.user.username,_this.options.whitelist) != -1 ) {
+            feed_result.push(value);
+          }
+        });
+
+      } else if (_this.url.indexOf('https://api.instagram.com/v1/users/') != -1) {
+
+        $.each( data.data, function(idx, value){
+
+          $.each( value.tags, function(idy, tagvalue){
+            if ( $.inArray(tagvalue,_this.options.whitelist) != -1 ) {
+              feed_result.push(value);
+            }
+          });
+        });
+
+      } else {
+        // feed is all
+        feed_result = data.data;
+      }
 
     } else {
+      // feed is all
       feed_result = data.data;
-
     }
 
     // read out result

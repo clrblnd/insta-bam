@@ -23,21 +23,29 @@
         clientid: client_id,
         whitelist: ['kurteken', 'gwennnevelsteen'],
         doneCallback: function(){
-          try {
-            $('.instabam time').timeago();
-            $(this).find('img').each(function (){
-              if($(this).data('likes') >= 20){
-                $(this).addClass('likeable');
-              }
-            });
-          } catch(e){
-            console.log(e);
-          }
+          $(this).find('time').timeago();
+          $(this).find('img').each(function (){
+            if($(this).data('likes') >= 20){
+              $(this).addClass('likeable');
+            }
+          });
         }
       });
 
       $('.instafeed-nintendo').instafeed('https://api.instagram.com/v1/tags/nintendo/media/recent?access_token=' + access_token, {
         clientid: client_id
+      });
+
+      $('.instafeed-clrblnd').instafeed('https://api.instagram.com/v1/users/133738/media/recent/?access_token=' + access_token, {
+        clientid: client_id,
+        doneCallback: function(){
+          $(this).find('time').timeago();
+          $(this).find('img').each(function (){
+            if($(this).data('likes') >= 9){
+              $(this).addClass('likeable');
+            }
+          });
+        }
       });
 
     });
@@ -49,7 +57,7 @@
     html,
     body {
       font-family: Helvetica, Arial;
-      padding: 20px 100px 100px 100px;
+      padding: 20px 70px 70px 70px;
       font-size: 13px;
     }
 
@@ -121,6 +129,10 @@
 
 <h2>#nintendo</h2>
 <div class="instafeed-nintendo"></div>
+
+<h2>@clrblnd</h2>
+<div class="explenation">Get userfeed, filter whitelisted tags and apply css style based on likes.</div>
+<div class="instafeed-clrblnd"></div>
 
 </body>
 </html>
