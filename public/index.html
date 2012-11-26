@@ -20,10 +20,21 @@
 
       $('.instafeed-jaegher').instafeed('https://api.instagram.com/v1/tags/jaegher/media/recent?access_token=' + access_token, {
         clientid: client_id,
-        whitelist: ['kurteken', 'gwennnevelsteen']
+        whitelist: ['kurteken', 'gwennnevelsteen'],
+        doneCallback: function(){
+          try {
+            $(this).find('img').each(function (){
+              if($(this).data('likes') >= 20){
+                $(this).addClass('likeable');
+              }
+            });
+          } catch(e){
+            console.log(e);
+          }
+        }
       });
 
-      $('.instafeed-antwerp').instafeed('https://api.instagram.com/v1/tags/antwerp/media/recent?access_token=' + access_token, {
+      $('.instafeed-nintendo').instafeed('https://api.instagram.com/v1/tags/nintendo/media/recent?access_token=' + access_token, {
         clientid: client_id
       });
 
@@ -58,6 +69,11 @@
       width: 100px;
     }
 
+    img.likeable {
+      height: 200px;
+      width: 200px;
+    }
+
     time {
       display: block;
       padding: 5px;
@@ -71,8 +87,8 @@
 <h2>#jaegher</h2>
 <div class="instafeed-jaegher"></div>
 
-<h2>#antwerpen</h2>
-<div class="instafeed-antwerp"></div>
+<h2>#nintendo</h2>
+<div class="instafeed-nintendo"></div>
 
 </body>
 </html>
