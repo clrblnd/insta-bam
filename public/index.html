@@ -45,6 +45,28 @@
   </script>
 
   <style>
+
+    html,
+    body {
+      font-family: Helvetica, Arial;
+      padding: 20px 100px 100px 100px;
+      font-size: 13px;
+    }
+
+    h1,
+    h2 {
+      color: rgb(20,20,20);
+    }
+
+    h2,
+    .explenation {
+      color: rgb(190, 190, 190);
+    }
+
+    .explenation {
+      margin: 0 0 30px 0;
+    }
+
     ul {
       font-family: Monaco,"Lucida Console",monospace;
       font-size: 12px;
@@ -56,19 +78,26 @@
 
     li {
       background-color: $white;
-      -webkit-box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.75);
-      -moz-box-shadow:    0px 0px 5px rgba(50, 50, 50, 0.75);
-      box-shadow:         0px 0px 5px rgba(50, 50, 50, 0.75);
+      -webkit-box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.2);
+      -moz-box-shadow:    0px 0px 5px rgba(50, 50, 50, 0.2);
+      box-shadow:         0px 0px 5px rgba(50, 50, 50, 0.2);
       float: left;
       margin: 10px;
-      padding: 2px;
+      padding: 3px;
       text-align: center;
+    }
+
+    a {
+      text-decoration: none;
+      color: blue;
+      font-size: 10px;
     }
 
     img {
       display: block;
       height: 100px;
       width: 100px;
+      margin: 0 auto;
     }
 
     img.likeable {
@@ -87,6 +116,7 @@
 <h1>Insta-Bam</h1>
 
 <h2>#jaegher</h2>
+<div class="explenation">Scrape for a certain tag, filter whitelisted users and apply css style based on likes.</div>
 <div class="instafeed-jaegher"></div>
 
 <h2>#nintendo</h2>
