@@ -2,7 +2,7 @@
  * insta-bam
  *
  * Created at: 2012-11-20 21:22:09 +0100
- * Updated at: 2012-11-26 10:18:57 +0100
+ * Updated at: 2012-11-26 17:14:02 +0100
  *
  * Author: @clrblnd (+ @ivow for the way of the code)
  * Version: 1.0.0

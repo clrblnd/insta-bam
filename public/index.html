@@ -11,6 +11,7 @@
     google.load("jquery", "1");
   </script>
   <script src="insta-bam-min.js"></script>
+  <script src="https://raw.github.com/rmm5t/jquery-timeago/master/jquery.timeago.js"></script>
   <script>
 
     $(function(){
@@ -23,6 +24,7 @@
         whitelist: ['kurteken', 'gwennnevelsteen'],
         doneCallback: function(){
           try {
+            $('.instabam time').timeago();
             $(this).find('img').each(function (){
               if($(this).data('likes') >= 20){
                 $(this).addClass('likeable');
