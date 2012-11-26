@@ -2,7 +2,7 @@
  * insta-bam
  *
  * Created at: 2012-11-20 21:22:09 +0100
- * Updated at: 2012-11-26 17:54:33 +0100
+ * Updated at: 2012-11-26 18:09:54 +0100
  *
  * Author: @clrblnd (+ @ivow for the way of the code)
  * Version: 1.1.0
@@ -60,8 +60,6 @@
         $this       = $(this.element),
         feed_result = [],
         $ul         = $('<ul />');
-
-        console.log(data.data);
 
     // check for whitelist data
     if(_this.options.whitelist) {
@@ -140,7 +138,6 @@
       $(this).data( plugin_name, new InstaFeed(this, url, options) );
 
       var instabam_instance = $(this).data( 'instaBam' );
-      console.log( instabam_instance.url );
 
     });
   };
