@@ -2,6 +2,11 @@
 
 A simple, lightweight and flexible jQuery-plugin for all your instagram needs. It uses a template based result output, so that you can tweak the results to what you want, without any hassle. Hurrah!
 
+#### Demo can be found here
+
+↳ [http://clrblnd.github.com/insta-bam/public/]()
+
+
 ## Features
 
 * Scrape for a hashtag
@@ -25,7 +30,7 @@ You first create an element, with a class name that we'll call on later. This di
 
 Just put it in the head of course
 
-```  
+```
   <script src="http://www.google.com/jsapi?key="></script>
   <script>
     google.load("jquery", "1");
@@ -38,7 +43,7 @@ Just put it in the head of course
 We can now call a simple jQuery function to our element, and flood it with results.
 
 
-```  
+```
   <script>
 
     $(function(){
