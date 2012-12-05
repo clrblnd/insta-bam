@@ -5,7 +5,7 @@
  * Updated at: 2012-11-26 18:09:54 +0100
  *
  * Author: @clrblnd (+ @ivow for the way of the code)
- * Version: 1.1.1
+ * Version: 1.2.0
  *
  */
 
