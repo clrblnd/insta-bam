@@ -3,7 +3,7 @@ class Jplugin < Thor
 
   desc "compile", "Compiles js file to public/"
   def compile
-    relative = 'insta-bam.js'
+    relative = 'jquery-insta-bam.js'
     text = File.read(relative)
     text.gsub!(/Updated at: (.*)/) { |m| m.gsub($1, "#{Time.now}") }
     File.open( relative, "w") { |file| file.puts text }
@@ -21,15 +21,24 @@ class Jplugin < Thor
         version = nil
         parts   = nil
 
-        gsub_file( 'insta-bam.js', /Version[:].+$/) do |match|
+        gsub_file( 'insta-bam.jquery.json', /"version"[:].+$/) do |match|
+          label, version = *match.split(':', 2)
+          parts = version.strip.split('.')
+          parts[2] = parts[2].to_i + 1
+          "#{label}: #{parts.join('.')}\","
+        end
+
+        gsub_file( 'jquery-insta-bam.js', /Version[:].+$/) do |match|
           label, version = *match.split(':', 2)
           parts = version.strip.split('.')
           parts[2] = parts[2].to_i + 1
           "#{label}: #{parts.join('.')}"
         end
 
+        run( "thor jplugin:compile")
         run( "git add .; git commit -m '#{label}: #{parts.join('.')}';" )
         run( "git tag -a v#{parts.join('.')} -m '#{label}: #{parts.join('.')}'")
+        run( "git push --tags; git push origin master;" )
 
       else
         say( 'Your git branch is not clean', :red )
@@ -46,7 +55,15 @@ class Jplugin < Thor
         version = nil
         parts   = nil
 
-        gsub_file( 'insta-bam.js', /Version[:].+$/) do |match|
+        gsub_file( 'insta-bam.jquery.json', /"version"[:].+$/) do |match|
+          label, version = *match.split(':', 2)
+          parts = version.strip.split('.')
+          parts[1] = parts[1].to_i + 1
+          parts[2] = 0
+          "#{label}: #{parts.join('.')}\","
+        end
+
+        gsub_file( 'jquery-insta-bam.js', /Version[:].+$/) do |match|
           label, version = *match.split(':', 2)
           parts = version.strip.split('.')
           parts[1] = parts[1].to_i + 1
@@ -54,8 +71,10 @@ class Jplugin < Thor
           "#{label}: #{parts.join('.')}"
         end
 
+        run( "thor jplugin:compile")
         run( "git add .; git commit -m '#{label}: #{parts.join('.')}';" )
         run( "git tag -a v#{parts.join('.')} -m '#{label}: #{parts.join('.')}'")
+        run( "git push --tags; git push origin master;" )
 
       else
         say( 'Your git branch is not clean', :red )
@@ -72,7 +91,16 @@ class Jplugin < Thor
         version = nil
         parts   = nil
 
-        gsub_file( 'insta-bam.js', /Version[:].+$/) do |match|
+        gsub_file( 'insta-bam.jquery.json', /"version"[:].+$/) do |match|
+          label, version = *match.split(':', 2)
+          parts = version.strip.split('.')
+          parts[0] = parts[0].gsub(/\"/,'').to_i + 1
+          parts[1] = 0
+          parts[2] = 0
+          "#{label}: \"#{parts.join('.')}\","
+        end
+
+        gsub_file( 'jquery-insta-bam.js', /Version[:].+$/) do |match|
           label, version = *match.split(':', 2)
           parts = version.strip.split('.')
           parts[0] = parts[0].to_i + 1
@@ -81,8 +109,10 @@ class Jplugin < Thor
           "#{label}: #{parts.join('.')}"
         end
 
+        run( "thor jplugin:compile")
         run( "git add .; git commit -m '#{label}: #{parts.join('.')}';" )
         run( "git tag -a v#{parts.join('.')} -m '#{label}: #{parts.join('.')}'")
+        run( "git push --tags; git push origin master;" )
 
       else
         say( 'Your git branch is not clean', :red )

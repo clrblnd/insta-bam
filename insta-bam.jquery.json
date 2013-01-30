@@ -1,0 +1,31 @@
+{
+  "name": "insta-bam",
+  "title": "jQuery insta-bam",
+  "description": "'Respect the feed and tame the filter!' — easy scraping, filtering, adding classes based on params (likes, comments, ...), adjustable template for your results and more!",
+  "keywords": ["instagram","filtering","scraping","userfeed","feed","social"],
+  "version": "1.2.1",
+  "author": {
+    "name": "Mr. Henry",
+    "url": "http://mrhenry.be"
+  },
+  "maintainers": [
+    {
+      "name": "Hans Spooren",
+      "email": "hans@mrhenry.be",
+      "url": "http://mrhenry.be"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/clrblnd/insta-bam/blob/master/MIT-LICENSE.txt"
+    }
+  ],
+  "bugs": "https://github.com/clrblnd/insta-bam/issues",
+  "homepage": "http://clrblnd.github.com/insta-bam/public/",
+  "docs": "https://github.com/clrblnd/insta-bam",
+  "download": "https://github.com/clrblnd/insta-bam/tags",
+  "dependencies": {
+    "jquery": ">=1.5"
+  }
+}
