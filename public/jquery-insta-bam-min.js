@@ -3,10 +3,10 @@
  insta-bam
 
  Created at: 2012-11-20 21:22:09 +0100
- Updated at: 2013-01-30 10:38:44 +0100
+ Updated at: 2013-01-30 10:40:47 +0100
 
  Author: @clrblnd (+ @ivow for the way of the code)
- Version: 1.2.1
+ Version: 1.2.2
 
 */
 (function(c,e){function f(a,b,d){this.element=a;this.options=c.extend({},k,d);this.url=b;this.id=this.url.hashCode();this.cache=e.sessionStorage[g+this.id];this.init()}var g="instaBam",k={doneCallback:null,tmpl_feed:'<a href="{{instagram_url}}" class="instabam"><img src="{{instagram}}" alt="{{caption}}" data-likes="{{likes}}" /><time datetime="{{created_at_iso}}" title="{{created_at_formatted}}">{{created_at_formatted}}</time></a>'};f.prototype.init=function(){var a=this;e.JSON&&e.Storage&&void 0!==

@@ -3,7 +3,7 @@
   "title": "jQuery insta-bam",
   "description": "'Respect the feed and tame the filter!' — easy scraping, filtering, adding classes based on params (likes, comments, ...), adjustable template for your results and more!",
   "keywords": ["instagram","filtering","scraping","userfeed","feed","social"],
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": {
     "name": "Mr. Henry",
     "url": "http://mrhenry.be"

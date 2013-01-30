@@ -2,10 +2,10 @@
  * insta-bam
  *
  * Created at: 2012-11-20 21:22:09 +0100
- * Updated at: 2013-01-30 10:38:44 +0100
+ * Updated at: 2013-01-30 10:40:47 +0100
  *
  * Author: @clrblnd (+ @ivow for the way of the code)
- * Version: 1.2.1
+ * Version: 1.2.2
  *
  */
 
