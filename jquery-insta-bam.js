@@ -43,10 +43,22 @@
       $.ajax({
         dataType: 'jsonp',
         success: function( response_data ){
-          if ( window.JSON && window.Storage ) {
-            window.sessionStorage[plugin_name + _this.id] = JSON.stringify( response_data );
+
+          // Check if API response isn't an error
+          // http://instagram.com/developer/endpoints/
+          if ( response_data.meta.code !== 200 ) {
+            if ( $.isFunction(_this.options.onErrorAPI) ) {
+              _this.options.onErrorAPI.call( _this.element, response_data );
+            }
+
+          } else {
+            if ( window.JSON && window.Storage ) {
+              window.sessionStorage[plugin_name + _this.id] = JSON.stringify( response_data );
+            }
+            _this.output( response_data );
+
           }
-          _this.output( response_data );
+
         },
         url: _this.url
       });
