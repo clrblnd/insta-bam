@@ -2,7 +2,7 @@
  * insta-bam
  *
  * Created at: 2012-11-20 21:22:09 +0100
- * Updated at: 2013-01-30 10:40:47 +0100
+ * Updated at: 2013-11-19 16:21:40 +0100
  *
  * Author: @clrblnd (+ @ivow for the way of the code)
  * Version: 1.2.2
@@ -19,6 +19,7 @@
   var plugin_name = 'instaBam',
       defaults    = {
         doneCallback  : null,
+        list          : null,
         tmpl_feed     : tmpl_feed
       },
       ISODateString;
@@ -26,7 +27,7 @@
   function InstaFeed(element, url, options){
     this.element  = element;
     this.options  = $.extend( {}, defaults, options );
-    this.url        = url;
+    this.url      = url;
     this.id       = this.url.hashCode();
     this.cache    = window.sessionStorage[plugin_name + this.id];
 
@@ -71,7 +72,7 @@
     var _this       = this,
         $this       = $(this.element),
         feed_result = [],
-        $ul         = $('<ul />');
+        $ul         = this.options.list ? this.options.list : $('<ul />');
 
     // check for whitelist data
     if(_this.options.whitelist) {
@@ -112,12 +113,13 @@
           template              = _this.options.tmpl_feed,
           created_at            = new window.Date( parseInt(value.created_time * 1000, 10) ),
           created_at_formatted  = created_at.getFullYear() + '-' + (created_at.getMonth() + 1) + '-' + created_at.getDate(),
-          created_at_iso        = _this.createdAtISO( created_at );
+          created_at_iso        = _this.createdAtISO( created_at ),
+          caption               = value.caption ? value.caption.text : "";
 
       template = template
         .replace(/\{\{instagram_url\}\}/g         , value.link)
         .replace(/\{\{instagram\}\}/g             , value.images.standard_resolution.url)
-        .replace(/\{\{caption\}\}/g               , value.caption.text)
+        .replace(/\{\{caption\}\}/g               , caption)
         .replace(/\{\{likes\}\}/g                 , value.likes.count)
         .replace(/\{\{created_at_iso\}\}/g        , created_at_iso)
         .replace(/\{\{created_at_formatted\}\}/g  , created_at_formatted);

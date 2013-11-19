@@ -10,7 +10,7 @@
   <script>
     google.load("jquery", "1");
   </script>
-  <script src="insta-bam-min.js"></script>
+  <script src="jquery-insta-bam-min.js"></script>
   <script src="https://raw.github.com/rmm5t/jquery-timeago/master/jquery.timeago.js"></script>
   <script>
 
@@ -45,7 +45,8 @@
               $(this).addClass('likeable');
             }
           });
-        }
+        },
+        list: $('.instafeed-clrblnd .feed')
       });
 
     });
@@ -132,7 +133,9 @@
 
 <h2>@clrblnd</h2>
 <div class="explenation">Get userfeed, filter whitelisted tags and apply css style based on likes.</div>
-<div class="instafeed-clrblnd"></div>
+<div class="instafeed-clrblnd">
+  <ul class="feed"></ul>
+</div>
 
 </body>
 </html>
